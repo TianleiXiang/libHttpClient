@@ -62,12 +62,12 @@ typedef struct http_singleton
     uint32_t m_retryDelayInSeconds = DEFAULT_RETRY_DELAY_IN_SECONDS;
 
 #if !HC_NOWEBSOCKETS
-    // WebSocket state
-    HCWebSocketMessageFunction m_websocketMessageFunc = nullptr;
-    HCWebSocketCloseEventFunction m_websocketCloseEventFunc = nullptr;
-
+    // Platform implementation handlers
+    HCWebSocketMessageFunction m_websocketMessageFunc;
+    HCWebSocketCloseEventFunction m_websocketCloseEventFunc;
     HCWebSocketConnectFunction m_websocketConnectFunc = nullptr;
     HCWebSocketSendMessageFunction m_websocketSendMessageFunc = nullptr;
+    HCWebSocketSendBinaryMessageFunction m_websocketSendBinaryMessageFunc;
     HCWebSocketDisconnectFunction m_websocketDisconnectFunc = nullptr;
 #endif
 
