@@ -436,7 +436,6 @@ try
         else
         {
             websocketTask->m_messageWebSocket->Control->MessageType = SocketMessageType::Binary;
-            unsigned char* uchar = reinterpret_cast<unsigned char*>(const_cast<char*>(msg->m_message.c_str()));
             websocketTask->m_messageDataWriter->WriteBytes(Platform::ArrayReference<unsigned char>(msg->m_messageBinary.data(), static_cast<unsigned int>(msg->m_messageBinary.size())));
         }
 

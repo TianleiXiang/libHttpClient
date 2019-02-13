@@ -572,11 +572,12 @@ STDAPI HCHttpCallResponseGetHeaderAtIndex(
 /// </summary>
 /// <param name="websocket">Handle to the WebSocket that this message was sent to</param>
 /// <param name="incomingBodyString">UTF-8 encoded body of the incoming message as a string value, only if the message type is UTF-8.</param>
+/// <param name="functionContext">Client context to pass to callback function.</param>
 typedef void
 (STDAPIVCALLTYPE* HCWebSocketMessageFunction)(
     _In_ HCWebsocketHandle websocket,
     _In_z_ const char* incomingBodyString,
-    _In_ void* context
+    _In_ void* functionContext
     );
 
 /// <summary>
@@ -585,12 +586,13 @@ typedef void
 /// <param name="websocket">Handle to the WebSocket that this message was sent to</param>
 /// <param name="incomingBodyPayload"></param>
 /// <param name="incomingBodyPayloadSize"></param>
+/// <param name="functionContext">Client context to pass to callback function.</param>
 typedef void
 (STDAPIVCALLTYPE* HCWebSocketBinaryMessageFunction)(
     _In_ HCWebsocketHandle websocket,
     _In_reads_bytes_(payloadSize) const uint8_t* payloadBytes,
     _In_ uint32_t payloadSize,
-    _In_ void* context
+    _In_ void* functionContext
     );
 
 /// <summary>
@@ -598,11 +600,12 @@ typedef void
 /// </summary>
 /// <param name="websocket">Handle to the WebSocket</param>
 /// <param name="closeStatus">The status of why the WebSocket was closed</param>
+/// <param name="functionContext">Client context to pass to callback function.</param>
 typedef void
 (STDAPIVCALLTYPE* HCWebSocketCloseEventFunction)(
     _In_ HCWebsocketHandle websocket,
     _In_ HCWebSocketCloseStatus closeStatus,
-    _In_ void* context
+    _In_ void* functionContext
     );
 
 /// <summary>
@@ -618,9 +621,9 @@ typedef void
 /// </summary>
 /// <param name="websocket">The handle of the websocket</param>
 /// <param name="messageFunc">A pointer to the message handling callback to use, or a null pointer to remove.</param>
-/// <param name="binaryMessageFunc">A pointer to the message handling callback to use, or a null pointer to remove.</param>
+/// <param name="binaryMessageFunc">A pointer to the binary message handling callback to use, or a null pointer to remove.</param>
 /// <param name="closeFunc">A pointer to the close callback to use, or a null pointer to remove.</param>
-/// <param name="context">Client context to pass to callback function.</param>
+/// <param name="functionContext">Client context to pass to callback function.</param>
 /// <returns>Result code for this API operation.  Possible values are S_OK, E_INVALIDARG, or E_FAIL.</returns>
 STDAPI HCWebSocketCreate(
     _Out_ HCWebsocketHandle* websocket,
@@ -657,29 +660,19 @@ STDAPI HCWebSocketSetHeader(
     ) noexcept;
 
 /// <summary>
-/// Sets the WebSocket functions to allow callers to respond to incoming messages and WebSocket close events.
-/// </summary>
-/// <param name="websocket">The websocket to attach the callbacks to</param>
-STDAPI HCWebSocketSetFunctions(
-    _In_ HCWebsocketHandle websocket,
-    _In_opt_ HCWebSocketMessageFunction messageFunc,
-    _In_opt_ HCWebSocketBinaryMessageFunction binaryMessageFunc,
-    _In_opt_ HCWebSocketCloseEventFunction closeFunc,
-    _In_opt_ void* context
-    ) noexcept;
-
-
-/// <summary>
 /// Gets the WebSocket functions to allow callers to respond to incoming messages and WebSocket close events.
 /// </summary>
+/// <param name="websocket">The handle of the websocket</param>
 /// <param name="messageFunc">A pointer to the message handling callback to use, or a null pointer to remove.</param>
+/// <param name="binaryMessageFunc">A pointer to the binary message handling callback to use, or a null pointer to remove.</param>
 /// <param name="closeFunc">A pointer to the close callback to use, or a null pointer to remove.</param>
+/// <param name="functionContext">Client context to pass to callback function.</param>
 STDAPI HCWebSocketGetEventFunctions(
     _In_ HCWebsocketHandle websocket,
     _Out_opt_ HCWebSocketMessageFunction* messageFunc,
     _Out_opt_ HCWebSocketBinaryMessageFunction* binaryMessageFunc,
     _Out_opt_ HCWebSocketCloseEventFunction* closeFunc,
-    _Out_ void** context
+    _Out_ void** functionContext
     ) noexcept;
 
 
