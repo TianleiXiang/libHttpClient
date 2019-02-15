@@ -947,11 +947,12 @@ void CALLBACK Internal_HCHttpCallPerformAsync(
 
 #if HC_WINHTTP_WEBSOCKETS
 HRESULT winhttp_http_task::send_websocket_message(
-    _In_ const char* payloadPtr,
+    WINHTTP_WEB_SOCKET_BUFFER_TYPE eBufferType,
+    _In_ const void* payloadPtr,
     _In_ size_t payloadLength)
 {
     DWORD dwError = WinHttpWebSocketSend(m_hRequest,
-        WINHTTP_WEB_SOCKET_UTF8_MESSAGE_BUFFER_TYPE, // TODO: use WINHTTP_WEB_SOCKET_BINARY_MESSAGE_BUFFER_TYPE when supporting binary
+        eBufferType, 
         (PVOID)payloadPtr,
         static_cast<DWORD>(payloadLength));
     if (FAILED(HRESULT_FROM_WIN32(dwError)))

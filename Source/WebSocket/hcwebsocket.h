@@ -55,7 +55,7 @@ HRESULT CALLBACK Internal_HCWebSocketSendMessageAsync(
     _Inout_ XAsyncBlock* asyncBlock
     );
 
-HRESULT Internal_HCWebSocketSendBinaryMessageAsync(
+HRESULT CALLBACK Internal_HCWebSocketSendBinaryMessageAsync(
     _In_ HCWebsocketHandle websocket,
     _In_reads_bytes_(payloadSize) const uint8_t* payloadBytes,
     _In_ uint32_t payloadSize,
