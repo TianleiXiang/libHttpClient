@@ -495,16 +495,6 @@ HCWebSocketGetHeaderAtIndex(
     _Out_ const char** headerValue
 ) noexcept;
 
-/// <summary>
-/// Gets the WebSocket functions to allow callers to respond to incoming messages and WebSocket close events.
-/// </summary>
-/// <param name="messageFunc">A pointer to the message handling callback to use, or a null pointer to remove.</param>
-/// <param name="closeFunc">A pointer to the close callback to use, or a null pointer to remove.</param>
-STDAPI HCWebSocketGetFunctions(
-    _Out_opt_ HCWebSocketMessageFunction* messageFunc,
-    _Out_opt_ HCWebSocketCloseEventFunction* closeFunc
-    ) noexcept;
-
 #endif // !HC_NOWEBSOCKETS
 
 }
