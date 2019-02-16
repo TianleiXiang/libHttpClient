@@ -75,7 +75,7 @@
       </AdditionalIncludeDirectories>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <AdditionalOptions>-D DSO_DLFCN -D HAVE_DLFCN_H -D NDEBUG -D OPENSSL_THREADS -D OPENSSL_NO_STATIC_ENGINE -D __STDC_NO_ATOMICS__ -D OPENSSL_PIC -D OPENSSL_USE_NODELETE -D OPENSSLDIR='"THIS_SHOULD_NOT_BE_USED"' -D ENGINESDIR='"THIS_SHOULD_NOT_BE_USED"' -D UNICODE %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-D DSO_DLFCN -D HAVE_DLFCN_H -D NDEBUG -D OPENSSL_THREADS -D OPENSSL_NO_STATIC_ENGINE -D OPENSSL_NO_DEVCRYPTOENG -D __STDC_NO_ATOMICS__ -D OPENSSL_PIC -D OPENSSL_USE_NODELETE -D OPENSSLDIR='"THIS_SHOULD_NOT_BE_USED"' -D ENGINESDIR='"THIS_SHOULD_NOT_BE_USED"' -D UNICODE %(AdditionalOptions)</AdditionalOptions>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
