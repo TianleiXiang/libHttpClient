@@ -384,7 +384,7 @@ typedef HRESULT
 /// <param name="asyncBlock">The asyncBlock of the async task</param>
 /// <returns>Result code for this API operation.  Possible values are S_OK, E_INVALIDARG, or E_FAIL.</returns>
 typedef HRESULT
-(STDAPIVCALLTYPE* HCWebSocketSendBinaryMessageFunction)(
+(CALLBACK* HCWebSocketSendBinaryMessageFunction)(
     _In_ HCWebsocketHandle websocket,
     _In_reads_bytes_(payloadSize) const uint8_t* payloadBytes,
     _In_ uint32_t payloadSize,

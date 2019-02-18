@@ -63,11 +63,11 @@ typedef struct http_singleton
 
 #if !HC_NOWEBSOCKETS
     // Platform implementation handlers
-    HCWebSocketMessageFunction m_websocketMessageFunc;
-    HCWebSocketCloseEventFunction m_websocketCloseEventFunc;
+    HCWebSocketMessageFunction m_websocketMessageFunc = nullptr;
+    HCWebSocketCloseEventFunction m_websocketCloseEventFunc = nullptr;
     HCWebSocketConnectFunction m_websocketConnectFunc = nullptr;
     HCWebSocketSendMessageFunction m_websocketSendMessageFunc = nullptr;
-    HCWebSocketSendBinaryMessageFunction m_websocketSendBinaryMessageFunc;
+    HCWebSocketSendBinaryMessageFunction m_websocketSendBinaryMessageFunc = nullptr;
     HCWebSocketDisconnectFunction m_websocketDisconnectFunc = nullptr;
 #endif
 

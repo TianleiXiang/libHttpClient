@@ -807,19 +807,18 @@ HRESULT CALLBACK Internal_HCWebSocketSendMessageAsync(
     return wsppSocket->send(async, message);
 }
 
-HRESULT Internal_HCWebSocketSendBinaryMessageAsync(
+HRESULT CALLBACK Internal_HCWebSocketSendBinaryMessageAsync(
     _In_ HCWebsocketHandle websocket,
     _In_reads_bytes_(payloadSize) const uint8_t* payloadBytes,
     _In_ uint32_t payloadSize,
-    _Inout_ XAsyncBlock* async
-)
+    _Inout_ XAsyncBlock* asyncBlock)
 {
     std::shared_ptr<wspp_websocket_impl> wsppSocket = std::dynamic_pointer_cast<wspp_websocket_impl>(websocket->impl);
     if (wsppSocket == nullptr)
     {
         return E_UNEXPECTED;
     }
-    return wsppSocket->sendBinary(async, payloadBytes, payloadSize);
+    return wsppSocket->sendBinary(asyncBlock, payloadBytes, payloadSize);
 }
 
 HRESULT CALLBACK Internal_HCWebSocketDisconnect(
